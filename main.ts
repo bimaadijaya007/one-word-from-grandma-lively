@@ -19,6 +19,12 @@ function validate(word) {
   if (/\s/.test(word)) {
     throw new Error("word must be a single word, no whitespace");
   }
+  if (!/^[a-z]+$/.test(word)) {
+    throw new Error("word must be plain lowercase letters only");
+  }
+  if (Buffer.byteLength(word, "utf8") > 30) {
+    throw new Error("word must be at most 30 UTF-8 bytes");
+  }
 }
 
 function main() {
